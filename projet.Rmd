@@ -1,0 +1,97 @@
+---
+title: "projet"
+output: html_document
+---
+
+---
+title: "projet"
+output: html_document
+---
+
+Description du jeu de données
+
+Le jeu de données intitulé `prevision cardiaque.csv`, il contient des informations médicales concernant différents patients, en lien avec la santé cardiaque.
+
+Il comporte 10000 lignes et 21 variables, incluant des données biométriques, cliniques, et démographiques.
+
+L’objectif de cette section est de présenter et décrire chacune des variables de ce jeu de données, en précisant leur nature (qualitative ou quantitative) et leur signification.
+
+
+Librairie utiliser :
+```{r}
+library(tibble)
+library(knitr)
+library(readr)
+library(dplyr)
+library(kableExtra)
+library(ggplot2)
+```
+
+```{r}
+data <- read_csv("prevision cardiaque.csv")
+
+```
+on peut voir qu'on a 12 variables qualitatives et 9 variables quantitatives, qu'on peut voir dans le tableau suivant : 
+
+
+```{r}
+variables <- tribble(
+  ~Nom,                      ~Type,           ~Rôle,               ~Description,
+  "Gender",                 "Qualitative",   "Explicative",       "Sexe du patient (Male/Female)",
+  "Age",                    "Quantitative",  "Explicative",       "Âge du patient en années",
+  "Blood Pressure",         "Quantitative",  "Explicative",       "Pression artérielle (mmHg)",
+  "Cholesterol Level",      "Quantitative",  "Explicative",       "Taux de cholestérol (mg/dL)",
+  "Exercise Habits",        "Qualitative",   "Explicative",       "Fréquence de l’activité physique",
+  "Smoking",                "Qualitative",   "Explicative",       "Fumeur ou non (Yes/No)",
+  "Family Heart Disease",   "Qualitative",   "Explicative",       "Antécédents familiaux de maladies cardiaques",
+  "Diabetes",               "Qualitative",   "Explicative",       "Présence de diabète (Yes/No)",
+  "High Blood Pressure",    "Qualitative",   "Explicative",       "Diagnostic d’hypertension (Yes/No)",
+  "BMI",                    "Quantitative",  "Explicative",       "Indice de masse corporelle",
+  "Sleep Hours",            "Quantitative",  "Explicative",       "Nombre d’heures de sommeil par nuit",
+  "Stress Level",           "Quantitative",  "Explicative",       "Niveau de stress (échelle numérique)",
+  "Heart Rate",             "Quantitative",  "Explicative",       "Fréquence cardiaque (bpm)",
+  "Triglyceride Level",     "Quantitative",  "Explicative",       "Taux de triglycérides (mg/dL)",
+  "Fasting Blood Sugar",    "Quantitative",  "Explicative",       "Glycémie à jeun (mg/dL)",
+  "ECG Results",            "Qualitative",   "Explicative",       "Résultats de l'électrocardiogramme",
+  "Physical Activity Days", "Quantitative",  "Explicative",       "Nombre de jours d’activité physique/semaine",
+  "Alcohol Intake",         "Qualitative",   "Explicative",       "Consommation d’alcool (Yes/No)",
+  "Chest Pain Type",        "Qualitative",   "Explicative",       "Type de douleur thoracique",
+  "Heart Disease",          "Qualitative",   "À expliquer",       "Présence d'une maladie cardiaque (Yes/No)",
+  "Medication Use",         "Qualitative",   "Explicative",       "Prise de médicaments (Yes/No)"
+)
+
+
+
+kable(variables, caption = "Tableau descriptif des premières variables du jeu de données")
+```
+Explicative : variable utilisée pour expliquer ou predire un phénomène 
+A expliquer : variable qu'on cherche à modéliser 
+
+
+
+Matrice de corrélation :
+```{r}
+
+quant_vars <- data |> select(where(is.numeric))
+
+cor_mat <- round(cor(quant_vars, use = "complete.obs"), 2)
+
+kable(cor_mat, caption = "Matrice de corrélation entre les variables quantitatives") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                full_width = FALSE, font_size = 12)
+
+```
+
+
+
+on ne voit pas de paire evidente, puisque tt est proche de 0, on cherche des paire logique comme 
+```{r}
+ggplot(data, aes(x = `Cholesterol Level`, y = `CRP Level`)) +
+  geom_point(alpha = 0.5, color = "darkblue") +
+  labs(
+    title = "Relation entre Cholestérol et CRP",
+    x = "Taux de cholestérol (mg/dL)",
+    y = "Taux de CRP (mg/L)"
+  )
+```
+
