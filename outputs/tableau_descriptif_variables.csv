@@ -1,0 +1,22 @@
+Nom,Type,Rôle,Description
+Age,Quantitative,Explicative,Âge du patient en années
+Gender,Qualitative,Explicative,Sexe du patient (Male/Female)
+Blood Pressure,Quantitative,Explicative,Pression artérielle (mmHg)
+Cholesterol Level,Quantitative,Explicative,Taux de cholestérol (mg/dL)
+Exercise Habits,Qualitative,Explicative,Fréquence de l’activité physique
+Smoking,Qualitative,Explicative,Statut tabagique (Yes/No)
+Family Heart Disease,Qualitative,Explicative,Antécédents familiaux de maladies cardiaques
+Diabetes,Qualitative,Explicative,Présence de diabète (Yes/No)
+BMI,Quantitative,Explicative,Indice de masse corporelle
+High Blood Pressure,Qualitative,Explicative,Diagnostic d’hypertension (Yes/No)
+Low HDL Cholesterol,Qualitative,Explicative,HDL bas (Yes/No)
+High LDL Cholesterol,Qualitative,Explicative,LDL élevé (Yes/No)
+Alcohol Consumption,Qualitative,Explicative,Consommation d’alcool (Low/Medium/High)
+Stress Level,Qualitative,Explicative,Niveau de stress (Low/Medium/High)
+Sleep Hours,Quantitative,Explicative,Nombre d’heures de sommeil par nuit
+Sugar Consumption,Qualitative,Explicative,Consommation de sucre (Low/Medium/High)
+Triglyceride Level,Quantitative,Explicative,Taux de triglycérides (mg/dL)
+Fasting Blood Sugar,Quantitative,Explicative,Glycémie à jeun (mg/dL)
+CRP Level,Quantitative,Explicative,Protéine C-réactive (mg/L)
+Homocysteine Level,Quantitative,Explicative,Niveau d'homocystéine (μmol/L)
+Heart Disease Status,Qualitative,À expliquer,Présence d'une maladie cardiaque (Yes/No)
